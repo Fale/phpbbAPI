@@ -37,6 +37,43 @@ Route::get('/', function()
 	return View::make('home.index');
 });
 
+Route::get('v0/forum', function()
+{
+    return Response::eloquent(
+        Forum::query()->order_by('left_id')->get(
+            array(
+                'forum_id as id',
+                'left_id as order',
+                'forum_name as name',
+                'forum_desc as desc',
+                'forum_posts as posts',
+                'forum_topics as topics',
+                'forum_last_post_id as last_post_id',
+                'forum_last_post_time as last_post_time',
+                'forum_last_post_subject as last_post_topic',
+                'forum_last_poster_name as last_poster',
+                'forum_last_poster_id as last_poster_id'
+            )
+        )
+    );
+});
+
+Route::get('v0/user', function()
+{
+    return Response::eloquent(
+        User::query()->where('user_password','!=','')->order_by('user_id')->get(
+            array(
+                'user_id as id',
+                'user_regdate as regdate',
+                'username as name',
+                'user_posts as posts',
+                'user_lastvisit as last_visit',
+                'user_lastpost_time as last_post'
+            )
+        )
+    );
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers
