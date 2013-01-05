@@ -9,7 +9,7 @@
     {{ Asset::container('bootstrapper')->scripts() }}
 </head>
 <body>
-	<div class="wrapper">
+	<div class="container">
 		<header>
 			<h1>PHPbbAPI v0</h1>
 		</header>
