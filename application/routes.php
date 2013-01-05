@@ -39,7 +39,7 @@ Route::get('/', function()
 });
 
 // API V0
-Route::get('v0/', function()
+Route::get('v0', function()
 {
 	return View::make('v0.index');
 });
