@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>PHPbbAPI v0</title>
+    <title>PHPbbAPI Mobile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -36,29 +35,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">PHPbbAPI v0</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li><a href="..">All versions</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
+          <a class="brand" href="#">PHPbbAPI Mobile Client</a>
         </div>
       </div>
     </div>
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Functions</li>
-              <li><a href="#forum">forum</a></li>
-              <li><a href="#forum-x">forum/{x}</a></li>
-              <li><a href="#">users</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
+        <div class="span12">
           <h2 id="forum">Forum</h2>
             <p>Here goes the text</p>
             <p>Here goes the text</p>
@@ -87,7 +71,6 @@
             <p>Here goes the text</p>
         </div><!--/span-->
       </div><!--/row-->
-<?php phpinfo(); ?>
       <hr>
 
       <footer class="footer">
