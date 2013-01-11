@@ -17,8 +17,11 @@
 # "index.php" front controller, keeping the query string intact
 
 <IfModule mod_rewrite.c>
-    RewriteCond %{HTTP_HOST} m [NC]
-    RewriteRule ^(.*)$ ./index.php/mobile/$1 [L]
+    RewriteCond %{HTTP_HOST} m\. [NC]
+    RewriteCond %{REQUEST_URI} !^/index.php/mobile 
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/mobile/$1 [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php/$1 [L]
