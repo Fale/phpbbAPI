@@ -51,7 +51,7 @@ Route::get('v0', function()
 });
 
 Route::any('v0/forum/(:num?)', array('uses' => 'forum@index'));
-
+/*
 Route::get('v0/forum/(:num)', function($id)
 {
     return Response::eloquent(
@@ -76,7 +76,7 @@ Route::get('v0/forum/(:num)', function($id)
             )
     );
 });
-
+*/
 Route::get('v0/user', function()
 {
     return Response::eloquent(

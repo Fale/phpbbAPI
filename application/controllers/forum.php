@@ -3,8 +3,8 @@ class Forum_Controller extends Base_Controller
 {
     public $restful = true;
 
-    public function get_index($number = NULL)
+    public function get_index($forumId = NULL)
     {
-        return Response::eloquent(Forum::get());
+        return Response::eloquent(Forums::get($forumId));
     }
 }
