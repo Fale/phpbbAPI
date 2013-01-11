@@ -51,25 +51,7 @@ Route::get('v0', function()
 });
 
 Route::any('v0/forum/(:num?)', array('uses' => 'v0_forum@index'));
-
-Route::get('v0/user', function()
-{
-    return Response::eloquent(
-        User::query()
-            ->where('user_password','!=','')
-            ->order_by('user_id')
-            ->get(
-                array(
-                    'user_id as id',
-                    'user_regdate as regdate',
-                    'username as name',
-                    'user_posts as posts',
-                    'user_lastvisit as last_visit',
-                    'user_lastpost_time as last_post'
-                )
-            )
-    );
-});
+Route::any('v0/user/(:num?)', array('uses' => 'v0_user@index'));
 
 /*
 |--------------------------------------------------------------------------
