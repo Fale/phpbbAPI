@@ -50,7 +50,7 @@ Route::get('v0', function()
 	return View::make('v0.index');
 });
 
-Route::any('v0/forum/(:num?)', array('uses' => 'forum@index'));
+Route::any('v0/forum/(:num?)', array('uses' => 'v0_forum@index'));
 /*
 Route::get('v0/forum/(:num)', function($id)
 {

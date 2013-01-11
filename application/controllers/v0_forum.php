@@ -1,5 +1,5 @@
 <?php
-class Forum_Controller extends Base_Controller
+class V0_Forum_Controller extends Base_Controller
 {
     public $restful = true;
 
