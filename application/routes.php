@@ -51,7 +51,7 @@ Route::get('v0', function()
 });
 
 Route::any('v0/forum/(:num?)', array('uses' => 'v0_forum@index'));
-Route::any('v0/user/(:num?)', array('uses' => 'v0_user@index'));
+Route::any('v0/user/', array('uses' => 'v0_user@index'));
 Route::any('v0/topic/(:num)', array('uses' => 'v0_topic@index'));
 
 /*
