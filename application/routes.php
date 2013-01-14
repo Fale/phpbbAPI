@@ -1,5 +1,10 @@
 <?php
 
+$server = explode('.', $_SERVER['SERVER_NAME']);
+$subdomain= (count($server) == 4) ? $server[0] : 'www';
+$path = path('app') . 'routes' . DS . $subdomain . '.php'; // (e.g. application/routes/vendor.php)
+include_once($path);
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -37,22 +42,6 @@ Route::get('mobile', function()
 {
 	return View::make('mobile.index');
 });
-
-// HOME
-Route::get('/', function()
-{
-	return View::make('home.index');
-});
-
-// API V0
-Route::get('v0', function()
-{
-	return View::make('v0.index');
-});
-
-Route::any('v0/forum/(:num?)', array('uses' => 'v0_forum@index'));
-Route::any('v0/user/', array('uses' => 'v0_user@index'));
-Route::any('v0/topic/(:num)', array('uses' => 'v0_topic@index'));
 
 /*
 |--------------------------------------------------------------------------
