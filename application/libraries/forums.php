@@ -1,6 +1,6 @@
 <?php
 class Forums {
-    public static function get($forumId)
+    public static function get($forumId = NULL)
     {
         if($forumId)
         {
