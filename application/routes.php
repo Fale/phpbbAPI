@@ -37,12 +37,6 @@ include_once($path);
 |
 */
 
-// Mobile Home
-Route::get('mobile', function()
-{
-	return View::make('mobile.index');
-});
-
 /*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers
