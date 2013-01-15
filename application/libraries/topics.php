@@ -2,7 +2,7 @@
 class Topics {
     public static function get($topicId)
     {
-        return Topic::query()
+        return Post::query()
             ->where('topic_id','=', $topicId)
             ->where('post_approved','=','1')
             ->order_by('post_time')
