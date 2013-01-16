@@ -9,6 +9,8 @@ class Stats {
             $output = array_merge( $output, Array("users" => User::query()->count()));
         if( !$object || $object == "topics")
             $output = array_merge( $output, Array("topics" => Topic::query()->count()));
+        if( !$object || $object == "forums")
+            $output = array_merge( $output, Array("forums" => Forum::query()->count()));
         return $output;
     }
 }
