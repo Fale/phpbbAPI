@@ -23,5 +23,23 @@ class Users {
                 );
         }
     }
+    
+    public static function getPosts($userId)
+    {
+        return Post::query()
+            ->where('poster_id','=', $userId)
+            ->where('post_approved','=','1')
+            ->order_by('post_time')
+            ->get(
+                array(
+                    'post_id as id',
+                    'post_attachment as attachment',
+                    'post_text as text',
+                    'post_checksum as checksum',
+                    'poster_id as poster_id',
+                    'post_time as post_time'
+                )
+            );
+    }
 }
 ?>
