@@ -1,5 +1,5 @@
 <?php
-class RSS_Index_Controller extends Base_Controller
+class RSS_User_Controller extends Base_Controller
 {
     public $restful = true;
 
