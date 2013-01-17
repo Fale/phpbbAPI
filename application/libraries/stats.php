@@ -9,6 +9,12 @@ class Stats {
             $output = array_merge( $output, Array("users" => User::query()->count()));
         if( !$object || $object == "topics")
             $output = array_merge( $output, Array("topics" => Topic::query()->count()));
+        if( !$object || $object == "most-replied-topic")
+        {
+            $t = Topic::query()->order_by('topic_replies','desc')->take(1)->get('topic_id');
+            $temp = Array("most-replied-topic" => $t['0']->to_array()['topic_id']);
+            $output = array_merge( $output, $temp);
+        }
         if( !$object || $object == "forums")
             $output = array_merge( $output, Array("forums" => Forum::query()->count()));
         return $output;
