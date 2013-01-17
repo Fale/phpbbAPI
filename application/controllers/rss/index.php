@@ -3,15 +3,15 @@ class RSS_Index_Controller extends Base_Controller
 {
     public $restful = true;
 
-    public function get_index($forumId = NULL)
+    public function get_index($userId = NULL, $limit = 10)
     {
-        $test_array = array (
-            'bla' => 'blub',
-            'foo' => 'bar',
-            'another_array' => array (
-                'stack' => 'overflow',
-            ),
-        );
+        $datas = Users::getPosts($userId, $limit);
+        $a = 0;
+        foreach( $datas as $data)
+        {
+            $posts[$a] = $data->to_array();
+            $a = $a + 1;
+        }
         $xml = new SimpleXMLElement('<rss version="2.0" encoding="utf-8"></rss>');
         $xml->addChild('channel'); 
         $xml->channel->addChild('title', 'ViGLug Forum Posts'); 
@@ -22,7 +22,15 @@ class RSS_Index_Controller extends Base_Controller
         $xml->channel->addChild('generator', 'PHPbbAPI');
         $xml->channel->addChild('docs', 'http://www.viglug.org');
         $xml->channel->addChild('pubDate', date(DATE_RSS)); 
-        array_walk_recursive($test_array, array ($xml, 'addChild'));
+
+        foreach( $posts as $post) {
+            $item = $xml->channel->addChild('item'); 
+            $item->addChild('title', htmlentities($post['subject'])); 
+            $item->addChild('link', 'http://www.site.com/'.$post['id'].'.html');
+            $item->addChild('description', htmlentities($post['text'])); 
+            $item->addChild('pubDate', date(DATE_RSS, $post['time'])); 
+        }
+//        array_walk_recursive($test_array, array ($xml, 'addChild'));
         return $xml->asXML();
     }
 }

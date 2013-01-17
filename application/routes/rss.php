@@ -1,3 +1,3 @@
 <?php
-Route::any('/', array('uses' => 'rss.index@index'));
+Route::any('/user/(:num)/(:num?)', array('uses' => 'rss.index@index'));
 ?>
