@@ -38,7 +38,7 @@ class Users {
                     'post_text as text',
                     'post_subject as subject',
                     'post_checksum as checksum',
-                    'poster_id as poster_id',
+                    'topic_id as topic_id',
                     'post_time as time'
                 )
             );
