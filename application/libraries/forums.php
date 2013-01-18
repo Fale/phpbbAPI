@@ -45,5 +45,26 @@ class Forums {
                 );
         }
     }
+
+    public static function getPosts($forumId, $limit = 10)
+    {
+        return Post::query()
+            ->where('forum_id','=', $forumId)
+            ->where('post_approved','=','1')
+            ->order_by('post_time', 'desc')
+            ->take($limit)
+            ->get(
+                array(
+                    'post_id as id',
+                    'post_attachment as attachment',
+                    'post_text as text',
+                    'post_subject as subject',
+                    'post_checksum as checksum',
+                    'topic_id as topic_id',
+                    'post_time as time'
+                )
+            );
+    }
+
 }
 ?>
