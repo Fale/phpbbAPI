@@ -29,7 +29,7 @@ class Users {
         return Post::query()
             ->where('poster_id','=', $userId)
             ->where('post_approved','=','1')
-            ->order_by('post_time')
+            ->order_by('post_time', 'desc')
             ->take($limit)
             ->get(
                 array(
