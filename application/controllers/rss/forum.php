@@ -26,7 +26,7 @@ class RSS_Forum_Controller extends Base_Controller
         foreach( $posts as $post) {
             $item = $xml->channel->addChild('item'); 
             $item->addChild('title', htmlentities($post['subject'])); 
-            $item->addChild('link', 'http://forum.viglug.org/viewtopic.php?t=' . $post['topic_id'] . '#p' . $post['id']);
+            $item->addChild('link', 'http://forum.viglug.org/viewtopic.php?f=' . $forumId . 't=' . $post['topic_id'] . '#p' . $post['id']);
             $item->addChild('description', htmlentities($post['text'])); 
             $item->addChild('pubDate', date(DATE_RSS, $post['time'])); 
         }
