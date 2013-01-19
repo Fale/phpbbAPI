@@ -81,6 +81,7 @@ class Forums {
                         'post_subject as subject',
                         'post_checksum as checksum',
                         'topic_id as topic_id',
+                        'forum_id as forum_id',
                         'post_time as time'
                     )
                 );
