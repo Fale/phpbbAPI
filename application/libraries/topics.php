@@ -15,6 +15,7 @@ class Topics {
                         'post_subject as subject',
                         'post_text as text',
                         'post_checksum as checksum',
+                        'forum_id as forum_id',
                         'poster_id as poster_id',
                         'post_time as time'
                     )
@@ -34,6 +35,7 @@ class Topics {
                         'post_subject as subject',
                         'post_text as text',
                         'post_checksum as checksum',
+                        'forum_id as forum_id',
                         'poster_id as poster_id',
                         'post_time as time'
                     )
