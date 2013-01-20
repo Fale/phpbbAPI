@@ -18,10 +18,14 @@ class Rsss extends SimpleXMLElement{
     {
         $item = $this->channel->addChild('item'); 
         $item->addChild('title', htmlentities($val['subject'])); 
-        $item->addChild('link', 'http://forum.viglug.org/viewtopic.php?f=' . $val['forum_id'] . '&amp;t=' . $val['topic_id'] . '#p' . $val['id']);
+        $item->addChild('link', $this->generateUrl($val));
         $item->addChild('description', htmlentities($val['text'])); 
         $item->addChild('pubDate', date(DATE_RSS, $val['time'])); 
     }
 
+    private function generateUrl($val)
+    {
+        return 'http://forum.viglug.org/viewtopic.php?f=' . $val['forum_id'] . '&amp;t=' . $val['topic_id'] . '#p' . $val['id'];
+    }
 }
 ?>
