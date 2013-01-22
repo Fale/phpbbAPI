@@ -26,10 +26,14 @@ class Rsss extends SimpleXMLElement{
     private function generateText($val)
     {
         $text = htmlentities($val['text']);
+        // Lists
         $text = str_replace("[list=1:259zw1au]", "&lt;ul&gt;", $text);
         $text = str_replace("[*:259zw1au]", "&lt;li&gt;", $text);
         $text = str_replace("[/*:m:259zw1au]", "&lt;/li&gt;", $text);
         $text = str_replace("[/list:o:259zw1au]", "&lt;/ul&gt;", $text);
+        // Italic
+        $text = str_replace("[i:259zw1au]", "&lt;i&gt;", $text);
+        $text = str_replace("[/i:259zw1au]", "&lt;/i&gt;", $text);
         return $text;
     }
 
