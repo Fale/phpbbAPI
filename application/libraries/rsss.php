@@ -31,6 +31,11 @@ class Rsss extends SimpleXMLElement{
         $text = str_replace("[*:259zw1au]", "&lt;li&gt;", $text);
         $text = str_replace("[/*:m:259zw1au]", "&lt;/li&gt;", $text);
         $text = str_replace("[/list:o:259zw1au]", "&lt;/ul&gt;", $text);
+        // Lists ordered
+        $text = str_replace("[list=1:31vsco5w]", "&lt;ol&gt;", $text);
+        $text = str_replace("[*:31vsco5w]", "&lt;li&gt;", $text);
+        $text = str_replace("[/*:m:31vsco5w]", "&lt;/li&gt;", $text);
+        $text = str_replace("[/list:o:31vsco5w]", "&lt;/ol&gt;", $text);
         // Italic
         $text = str_replace("[i:259zw1au]", "&lt;i&gt;", $text);
         $text = str_replace("[/i:259zw1au]", "&lt;/i&gt;", $text);
