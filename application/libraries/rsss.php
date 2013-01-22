@@ -39,6 +39,8 @@ class Rsss extends SimpleXMLElement{
         // Italic
         $text = str_replace("[i:259zw1au]", "&lt;i&gt;", $text);
         $text = str_replace("[/i:259zw1au]", "&lt;/i&gt;", $text);
+        // emoticons
+        $text = str_replace("{SMILIES_PATH}", "http://forum.viglug.org/images/smilies", $text);
         // Accented letters
         $text = str_replace("&Atilde;&nbsp;", "&agrave;", $text); // à
         $text = str_replace("&Atilde;&uml;", "&egrave;", $text); // è
