@@ -39,6 +39,8 @@ class Rsss extends SimpleXMLElement{
         // Italic
         $text = str_replace("[i:259zw1au]", "&lt;i&gt;", $text);
         $text = str_replace("[/i:259zw1au]", "&lt;/i&gt;", $text);
+        // Accented letters
+        $text = str_replace("&Atilde;&sup1;", "&ugrave;", $text); // ù
         return $text;
     }
 
