@@ -25,8 +25,7 @@ class Rsss extends SimpleXMLElement{
 
     private function generateText($val)
     {
-        $text = iconv('ASCII', 'UTF-8//IGNORE', $val['text']);
-        $text = htmlentities($text);
+        $text = htmlentities($val['text']);
         // Lists
         $text = str_replace("[list=1:259zw1au]", "&lt;ul&gt;", $text);
         $text = str_replace("[*:259zw1au]", "&lt;li&gt;", $text);
@@ -41,7 +40,8 @@ class Rsss extends SimpleXMLElement{
         $text = str_replace("[i:259zw1au]", "&lt;i&gt;", $text);
         $text = str_replace("[/i:259zw1au]", "&lt;/i&gt;", $text);
         // Accented letters
-        // $text = str_replace("&Atilde;&sup1;", "&ugrave;", $text); // ù
+        $text = str_replace("&Atilde;&sup1;", "&ugrave;", $text); // ù
+        $text = utf8_encode($text);
         return $text;
     }
 
