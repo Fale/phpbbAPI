@@ -19,8 +19,18 @@ class Rsss extends SimpleXMLElement{
         $item = $this->channel->addChild('item'); 
         $item->addChild('title', htmlentities($val['subject'])); 
         $item->addChild('link', $this->generateUrl($val));
-        $item->addChild('description', htmlentities($val['text'])); 
+        $item->addChild('description', $this->generateText($val)); 
         $item->addChild('pubDate', date(DATE_RSS, $val['time'])); 
+    }
+
+    private function generateText($val)
+    {
+        $text = htmlentities($val['text']);
+        $text = str_replace("[list=1:259zw1au]", "&lt;ul&gt;", $text);
+        $text = str_replace("[*:259zw1au]", "&lt;li&gt;", $text);
+        $text = str_replace("[/*:m:259zw1au]", "&lt;/li&gt;", $text);
+        $text = str_replace("[/list:o:259zw1au]", "&lt;/ul&gt;", $text);
+        return $text;
     }
 
     private function generateUrl($val)
