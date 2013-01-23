@@ -40,6 +40,7 @@ class Users {
                     'post_checksum as checksum',
                     'topic_id as topic_id',
                     'forum_id as forum_id',
+                    'poster_id as poster_id',
                     'post_time as time'
                 )
             );
