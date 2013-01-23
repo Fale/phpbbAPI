@@ -3,6 +3,8 @@ class Texts {
     public static function toUTF8($text)
     {
         $text = htmlentities($text);
+        // Fix citations
+        $text = preg_replace('/\[quote=&amp;quot;(.*)&amp;quot;:(.*)\](.*)[ ?]\[\/quote:\2\]/i','"$3" ($1)', $text);
         // Lists
         $text = str_replace("[list=1:259zw1au]", "&lt;ul&gt;", $text);
         $text = str_replace("[*:259zw1au]", "&lt;li&gt;", $text);
