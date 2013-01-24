@@ -36,9 +36,36 @@ class Rsss extends SimpleXMLElement{
         return $username[0]['username'];
     }
 
+    private function getPostOrd($postId)
+    {
+        $topics = Post::query()->where('post_id','=',$postId)->get(array('topic_id'));
+        $topic[0] = $topics[0]->to_array();
+        $topicId = $topic[0]['topic_id'];
+        $posts = Post::query()
+            ->where('topic_id','=', $topicId)
+            ->where('post_approved','=','1')
+            ->order_by('post_time')
+            ->get(
+                array('post_id')
+            );
+        $a = 0;
+        foreach( $posts as $post)
+        {
+            $ps[$a] = $post->to_array();
+            $a = $a + 1;
+            if( $ps[$a-1]['post_id'] == $postId )
+                return $a;
+        }
+    }
+
     private function generateUrl($val)
     {
-        return 'http://forum.viglug.org/viewtopic.php?f=' . $val['forum_id'] . '&amp;t=' . $val['topic_id'] . '#p' . $val['id'];
+        $p = $this->getPostOrd($val['id']);
+        $pager = floor($p/10);
+        if($pager == 0)
+            return 'http://forum.viglug.org/viewtopic.php?f=' . $val['forum_id'] . '&amp;t=' . $val['topic_id'] . '#p' . $val['id'];
+        else
+            return 'http://forum.viglug.org/viewtopic.php?f=' . $val['forum_id'] . '&amp;t=' . $val['topic_id'] . '&amp;start=' . $pager*10 . '#p' . $val['id'];
     }
 }
 ?>
