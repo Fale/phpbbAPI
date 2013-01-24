@@ -19,8 +19,21 @@ class Rsss extends SimpleXMLElement{
         $item = $this->channel->addChild('item'); 
         $item->addChild('title', htmlentities($val['subject'])); 
         $item->addChild('link', $this->generateUrl($val));
+        $item->addChild('author', $this->fetchPoster($val['poster_id']));
         $item->addChild('description', Texts::toUTF8($val['text'])); 
         $item->addChild('pubDate', date(DATE_RSS, $val['time'])); 
+    }
+
+    private function fetchPoster($poster_id)
+    {
+        $datas = User::query()->where('user_id','=',$poster_id)->get(array('username'));
+        $a = 0;
+        foreach( $datas as $data)
+        {
+            $username[$a] = $data->to_array();
+            $a = $a + 1;
+        }
+        return $username[0]['username'];
     }
 
     private function generateUrl($val)
