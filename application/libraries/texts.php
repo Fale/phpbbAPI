@@ -1,8 +1,16 @@
 <?php
 class Texts {
+
+    public static function toStdBBCode($text)
+    {
+        return preg_replace('/\[(\/?)(.*):(.*)\]/i','[$1$2]', $text);
+    }
+
     public static function toUTF8($text)
     {
         $text = htmlentities($text);
+        // First bbcode cleanup
+        $text = Texts::toStdBBCode($text);
         // Fix citations
         $text = preg_replace('/\[quote=&amp;quot;(.*)&amp;quot;:(.*)\](.*)[ ?]\[\/quote:\2\]/i','"$3" ($1)', $text);
         // Lists
