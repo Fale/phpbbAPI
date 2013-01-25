@@ -18,6 +18,9 @@ class Texts {
         // Italic
         $text = str_replace("[i:259zw1au]", "&lt;i&gt;", $text);
         $text = str_replace("[/i:259zw1au]", "&lt;/i&gt;", $text);
+        // Code
+        $text = str_replace("[code:180ywoqp]", "&lt;code&gt;", $text);
+        $text = str_replace("[/code:180ywoqp]", "&lt;/code&gt;", $text);
         // emoticons
         $text = str_replace("{SMILIES_PATH}", "http://forum.viglug.org/images/smilies", $text);
         // Accented letters
