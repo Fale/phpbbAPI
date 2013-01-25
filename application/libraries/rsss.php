@@ -27,13 +27,7 @@ class Rsss extends SimpleXMLElement{
     private function fetchPoster($poster_id)
     {
         $datas = User::query()->where('user_id','=',$poster_id)->get(array('username'));
-        $a = 0;
-        foreach( $datas as $data)
-        {
-            $username[$a] = $data->to_array();
-            $a = $a + 1;
-        }
-        return $username[0]['username'];
+        return $datas[0]->to_array()['username'];
     }
 
     private function getPostOrd($postId)
