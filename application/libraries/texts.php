@@ -3,7 +3,7 @@ class Texts {
 
     public static function toStdBBCode($text)
     {
-        return preg_replace('/\[(\/?)(.*):(.*)\]/i','[$1$2]', $text);
+        return preg_replace('/\[(\/?)([^:]*):([^\]]*)\]/i','[$1$2]', $text);
     }
 
     public static function toUTF8($text)
@@ -12,7 +12,7 @@ class Texts {
         // First bbcode cleanup
         $text = Texts::toStdBBCode($text);
         // Fix citations
-        $text = preg_replace('/\[quote=&amp;quot;(.*)&amp;quot;:(.*)\](.*)[ ?]\[\/quote:\2\]/i','"$3" ($1)', $text);
+        $text = preg_replace('/\[quote=&amp;quot;(.*?)&amp;quot;\](.*)\[\/quote\]/is','"$2" ($1)', $text);
         // Lists
         $text = str_replace("[list=1:259zw1au]", "&lt;ul&gt;", $text);
         $text = str_replace("[*:259zw1au]", "&lt;li&gt;", $text);
