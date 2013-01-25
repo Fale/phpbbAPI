@@ -13,16 +13,11 @@ class Texts {
         $text = Texts::toStdBBCode($text);
         // Fix citations
         $text = preg_replace('/\[quote=&amp;quot;(.*?)&amp;quot;\](.*)\[\/quote\]/is','"$2" ($1)', $text);
-        // Lists
-        $text = str_replace("[list=1:259zw1au]", "&lt;ul&gt;", $text);
-        $text = str_replace("[*:259zw1au]", "&lt;li&gt;", $text);
-        $text = str_replace("[/*:m:259zw1au]", "&lt;/li&gt;", $text);
-        $text = str_replace("[/list:o:259zw1au]", "&lt;/ul&gt;", $text);
         // Lists ordered
-        $text = str_replace("[list=1:31vsco5w]", "&lt;ol&gt;", $text);
-        $text = str_replace("[*:31vsco5w]", "&lt;li&gt;", $text);
-        $text = str_replace("[/*:m:31vsco5w]", "&lt;/li&gt;", $text);
-        $text = str_replace("[/list:o:31vsco5w]", "&lt;/ol&gt;", $text);
+        $text = str_replace("[list=1]", "&lt;ol&gt;", $text);
+        $text = str_replace("[*]", "&lt;li&gt;", $text);
+        $text = str_replace("[/*]", "&lt;/li&gt;", $text);
+        $text = str_replace("[/list]", "&lt;/ol&gt;", $text);
         // URL
         $text = preg_replace('/\[url=(.*):(.*)\](.*)\[\/url:(.*)\]/i','<a href="$1">$3</a>', $text);
         // Italic
