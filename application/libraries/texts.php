@@ -17,6 +17,8 @@ class Texts {
         $text = str_replace("[/list:o:31vsco5w]", "&lt;/ol&gt;", $text);
         // Italic
         $text = preg_replace('/\[i:(.*)\](.*)\[\/i:(.*)\]/i','<i>$2</i>', $text);
+        // Bold
+        $text = preg_replace('/\[b:(.*)\](.*)\[\/b:(.*)\]/i','<strong>$2</strong>', $text);
         // Code
         $text = str_replace("[code:180ywoqp]", "&lt;code&gt;", $text);
         $text = str_replace("[/code:180ywoqp]", "&lt;/code&gt;", $text);
