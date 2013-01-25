@@ -15,6 +15,8 @@ class Texts {
         $text = str_replace("[*:31vsco5w]", "&lt;li&gt;", $text);
         $text = str_replace("[/*:m:31vsco5w]", "&lt;/li&gt;", $text);
         $text = str_replace("[/list:o:31vsco5w]", "&lt;/ol&gt;", $text);
+        // URL
+        $text = preg_replace('/\[url=(.*):(.*)\](.*)\[\/url:(.*)\]/i','<a href="$1">$3</a>', $text);
         // Italic
         $text = preg_replace('/\[i:(.*)\](.*)\[\/i:(.*)\]/i','<i>$2</i>', $text);
         // Bold
