@@ -33,8 +33,7 @@ class Rsss extends SimpleXMLElement{
     private function getPostOrd($postId)
     {
         $topics = Post::query()->where('post_id','=',$postId)->get(array('topic_id'));
-        $topic[0] = $topics[0]->to_array();
-        $topicId = $topic[0]['topic_id'];
+        $topicId = $topics[0]->to_array()['topic_id'];
         $posts = Post::query()
             ->where('topic_id','=', $topicId)
             ->where('post_approved','=','1')
