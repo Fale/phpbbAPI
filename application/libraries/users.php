@@ -1,10 +1,21 @@
 <?php
 class Users {
-    public static function get($userId)
+    public static function get($userId = NULL)
     {
         if($userId)
         {
-            return array($userId);
+            return User::query()
+                ->where('user_id','=',$userId)
+                ->get(
+                    array(
+                        'user_id as id',
+                        'user_regdate as regdate',
+                        'username as name',
+                        'user_posts as posts',
+                        'user_lastvisit as last_visit',
+                        'user_lastpost_time as last_post'
+                    )
+                );
         }
         else
         {
