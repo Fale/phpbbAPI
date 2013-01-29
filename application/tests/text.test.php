@@ -8,7 +8,7 @@ class TestText extends PHPUnit_Framework_TestCase {
 	 */
 	public function testString()
 	{
-        $cleaned = Texts::toUTF8("è");
+        $cleaned = Text::toUTF8("è");
 		$this->assertEquals("&egrave;", $cleaned);	
 	}
 
