@@ -1,5 +1,5 @@
 <?php
-class Texts {
+class Text {
     public static function toUTF8($text)
     {
         $text = htmlentities($text);
