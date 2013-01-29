@@ -20,7 +20,7 @@ class Rsss extends SimpleXMLElement{
         $item->addChild('title', htmlentities($val['subject'])); 
         $item->addChild('link', $this->generateUrl($val));
         $item->addChild('author', $this->fetchPoster($val['poster_id']));
-        $item->addChild('description', Texts::toUTF8($val['text'])); 
+        $item->addChild('description', Text::toUTF8($val['text'])); 
         $item->addChild('pubDate', date(DATE_RSS, $val['time'])); 
     }
 
