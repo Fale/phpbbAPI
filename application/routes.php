@@ -1,6 +1,6 @@
 <?php
 
-$server = explode('.', $_SERVER['SERVER_NAME']);
+$server = (isSet($_SERVER['SERVER_NAME'])) ? explode('.', $_SERVER['SERVER_NAME']) : 'www';
 $subdomain= (count($server) == 4) ? $server[0] : 'www';
 $path = path('app') . 'routes' . DS . $subdomain . '.php'; // (e.g. application/routes/vendor.php)
 include_once($path);
