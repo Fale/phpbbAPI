@@ -1,11 +1,5 @@
 <?php
 class Texts {
-
-    public static function toStdBBCode($text)
-    {
-        return preg_replace('/\[(\/?)([^:]*):([^\]]*)\]/i','[$1$2]', $text);
-    }
-
     public static function toUTF8($text)
     {
         $text = htmlentities($text);
