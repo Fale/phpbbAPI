@@ -32,4 +32,14 @@ class TestBBCode extends PHPUnit_Framework_TestCase {
 		$this->assertEquals("[quote=Fale]", $cleaned);	
 	}
 
+    /**
+	 * Test that a complex PHPbb quote works properly
+	 * @return void
+	 */
+	public function testComplexPHPbbQuote()
+	{
+        $cleaned = BBCode::toStdBBCode("[quote=Fale:35s4h6he]");
+		$this->assertEquals("[quote=Fale]", $cleaned);	
+	}
+
 }
