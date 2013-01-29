@@ -16,7 +16,7 @@ class TestBBCode extends PHPUnit_Framework_TestCase {
 	 * Test that a simple PHPbb quote works properly
 	 * @return void
 	 */
-	public function testSimpleQuote()
+	public function testSimplePHPbbQuote()
 	{
         $cleaned = BBCode::toStdBBCode("[quote:35s4h6he]");
 		$this->assertEquals("[quote]", $cleaned);	
