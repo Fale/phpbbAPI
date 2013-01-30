@@ -26,7 +26,7 @@ class BBCode {
         $parser = new JBBCode\Parser();
         $parser->loadDefaultCodes();
         $parser->addBBCode('quote','<blockquote><p>{param}</p></blockquote>');
-        $parser->addBBCode('quote','<b>{option} wrote:</b><blockquote><p>{param}</p></blockquote>', true);
+        $parser->addBBCode('quote','<blockquote><p><b>{option} wrote:</b><br />{param}</p></blockquote>', true);
         $parser->addBBCode('list','<ul>{param}</ul>');
         $parser->addBBCode('list','<ol type="{option}">{param}</ol>', true);
         $parser->addBBCode('*','<li>{param}</li>');
