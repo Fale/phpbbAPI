@@ -20,7 +20,7 @@ class BBCode {
         $parser = new JBBCode\Parser();
         $parser->loadDefaultCodes();
         $parser->addBBCode('quote','<blockquote><p>{param}</p></blockquote>');
-        $parser->addBBCode('quote','{option} wrote:<blockquote><p>{param}</p></blockquote>', true);
+        $parser->addBBCode('quote','<b>{option} wrote:</b><blockquote><p>{param}</p></blockquote>', true);
         $parser->addBBCode('code', '<code>{param}</code>', false, false, 1);
         $parser->parse( $text );
         return $parser->getAsHtml();
