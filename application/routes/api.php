@@ -16,6 +16,6 @@ Route::any('v0/user/(:num?)', array('uses' => 'v0.user@index'));
 Route::any('v0/topic/(:num)', array('uses' => 'v0.topic@index'));
 Route::any('v0/stats/(:any?)', array('uses' => 'v0.stat@index'));
 
-Route::any('v1/login/(:any?)/(:any?)', array('uses' => 'v1.login@index'));
-Route::any('v1/profile/(:num?)', array('uses' => 'v1.profile@index'));
+Route::post('v1/account/login', array('uses' => 'v1.account@login'));
+Route::any('v1/account', array('uses' => 'v1.account@index'));
 ?>
