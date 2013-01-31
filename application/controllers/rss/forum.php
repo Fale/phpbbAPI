@@ -7,6 +7,8 @@ class RSS_Forum_Controller extends Base_Controller
     {
         $datas = Forums::getPosts($forumId, $limit);
         $a = 0;
+        if (!$datas)
+            return Response::error('404');
         foreach( $datas as $data)
         {
             $posts[$a] = $data->to_array();
