@@ -18,7 +18,7 @@ class Login extends Laravel\Auth\Drivers\Driver {
         if ( ! is_Null($a['username']) AND $this->phpbb_check_hash($a['password'], $passHash))
                return $this->login($userId, array_get($arguments, 'remember'));
         else
-               return "BAD";
+               return FALSE;
     }
 
 /**

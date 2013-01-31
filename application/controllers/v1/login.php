@@ -6,6 +6,9 @@ class V1_Login_Controller extends Base_Controller
     public function get_index($user, $pass)
     {
         $array = Array('username' => $user, 'password' => $pass);
-        return Auth::attempt($array);
+        if (Auth::attempt($array))
+            return "You're logged in!";
+        else
+            return "Auth error!";
     }
 }
