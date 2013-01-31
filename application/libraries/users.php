@@ -63,8 +63,10 @@ class Users {
         $d = $datas[0]->to_array();
         $userID = $d['user_id'];
         $passHash = $d['user_password'];
-        return Login::phpbb_check_hash( $pass, $passHash); 
-        
+        if (Login::phpbb_check_hash($pass, $passHash))
+               return "GOOD";
+        else
+               return "BAD";
         return "user:$user, pass:$pass, userID: $userID, hash: $passHash";
     }
 }
