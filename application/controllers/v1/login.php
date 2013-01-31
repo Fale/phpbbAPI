@@ -1,5 +1,5 @@
 <?php
-class V0_Login_Controller extends Base_Controller
+class V1_Login_Controller extends Base_Controller
 {
     public $restful = true;
 
