@@ -1,5 +1,26 @@
 <?php
-class Login {
+class Login extends Laravel\Auth\Drivers\Driver {
+
+    public function retrieve($id)
+    {
+        if (filter_var($id, FILTER_VALIDATE_INT) !== false)
+        {
+            return $this->model()->find($id);
+        } 
+    }
+
+    public function attempt($a = array())
+    {
+        $datas = User::query()->where('username','=',$a['user'])->get(array('user_id','user_password'));
+        $d = $datas[0]->to_array();
+        $userID = $d['user_id'];
+        $passHash = $d['user_password'];
+        if ( ! is_Null($a['username']) AND $this->phpbb_check_hash($a['password'], $passHash))
+               return $this->login($userId, array_get($arguments, 'remember'));
+        else
+               return "BAD";
+    }
+
 /**
 * Check for correct password
 *
@@ -8,12 +29,12 @@ class Login {
 *
 * @return bool Returns true if the password is correct, false if not.
 */
-public static function phpbb_check_hash($password, $hash)
+public function phpbb_check_hash($password, $hash)
 {
    $itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
    if (strlen($hash) == 34)
    {
-      return (Login::_hash_crypt_private($password, $hash, $itoa64) === $hash) ? true : false;
+      return ($this->_hash_crypt_private($password, $hash, $itoa64) === $hash) ? true : false;
    }
 
    return (md5($password) === $hash) ? true : false;
@@ -22,7 +43,7 @@ public static function phpbb_check_hash($password, $hash)
 /**
 * Generate salt for hash generation
 */
-public static function _hash_gensalt_private($input, &$itoa64, $iteration_count_log2 = 6)
+public function _hash_gensalt_private($input, &$itoa64, $iteration_count_log2 = 6)
 {
    if ($iteration_count_log2 < 4 || $iteration_count_log2 > 31)
    {
@@ -31,7 +52,7 @@ public static function _hash_gensalt_private($input, &$itoa64, $iteration_count_
 
    $output = '$H$';
    $output .= $itoa64[min($iteration_count_log2 + ((PHP_VERSION >= 5) ? 5 : 3), 30)];
-   $output .= Login::_hash_encode64($input, 6, $itoa64);
+   $output .= $this->_hash_encode64($input, 6, $itoa64);
 
    return $output;
 }
@@ -39,7 +60,7 @@ public static function _hash_gensalt_private($input, &$itoa64, $iteration_count_
 /**
 * Encode hash
 */
-public static function _hash_encode64($input, $count, &$itoa64)
+public function _hash_encode64($input, $count, &$itoa64)
 {
    $output = '';
    $i = 0;
@@ -83,7 +104,7 @@ public static function _hash_encode64($input, $count, &$itoa64)
 /**
 * The crypt function/replacement
 */
-public static function _hash_crypt_private($password, $setting, &$itoa64)
+public function _hash_crypt_private($password, $setting, &$itoa64)
 {
    $output = '*';
 
@@ -136,7 +157,7 @@ public static function _hash_crypt_private($password, $setting, &$itoa64)
    }
 
    $output = substr($setting, 0, 12);
-   $output .= Login::_hash_encode64($hash, 16, $itoa64);
+   $output .= $this->_hash_encode64($hash, 16, $itoa64);
 
    return $output;
 }
