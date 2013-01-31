@@ -11,14 +11,14 @@ class Login extends Laravel\Auth\Drivers\Driver {
 
     public function attempt($a = array())
     {
-        $datas = User::query()->where('username','=',$a['user'])->get(array('user_id','user_password'));
+        $datas = User::query()->where('username','=',$a['username'])->get(array('user_id','user_password'));
         $d = $datas[0]->to_array();
         $userID = $d['user_id'];
         $passHash = $d['user_password'];
-        if ( ! is_Null($a['username']) AND $this->phpbb_check_hash($a['password'], $passHash))
-               return $this->login($userId, array_get($arguments, 'remember'));
+        if ($this->phpbb_check_hash($a['password'], $passHash))
+            return $this->login($userID, array_get($a, 'remember'));
         else
-               return FALSE;
+            return FALSE;
     }
 
 /**
