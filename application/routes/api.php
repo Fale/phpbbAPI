@@ -18,11 +18,11 @@ Route::any('v0/stats/(:any?)', array('uses' => 'v0.stat@index'));
 
 Event::listen('404', function()
 {
-    return Response::json( array( 'errors' => array( 'message' => 'The requested resource could not be found', 'code' => '404')), '404');
+    return Response::json( array( 'error' => array( 'message' => 'The requested resource could not be found', 'code' => '404')), '404');
 });
 
 Event::listen('500', function()
 {
-    return Response::json( array( 'errors' => array( 'message' => 'Internal Server Error', 'code' => '500')), '500');
+    return Response::json( array( 'error' => array( 'message' => 'Internal Server Error', 'code' => '500')), '500');
 });
 ?>
