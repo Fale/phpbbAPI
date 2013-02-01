@@ -19,6 +19,12 @@ Route::any('v0/stats/(:any?)', array('uses' => 'v0.stat@index'));
 Route::post('v1/account/login', array('uses' => 'v1.account@login'));
 Route::any('v1/account', array('uses' => 'v1.account@index'));
 
+Route::filter('auth', function()
+{
+    if (Auth::guest())
+        return Response::json( array( 'error' => array( 'message' => 'Unauthorized', 'code' => '401')), '401');
+});
+
 Event::listen('404', function()
 {
     return Response::json( array( 'error' => array( 'message' => 'The requested resource could not be found', 'code' => '404')), '404');
