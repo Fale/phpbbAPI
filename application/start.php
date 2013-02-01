@@ -181,3 +181,8 @@ if ( ! Request::cli() and Config::get('session.driver') !== '')
 {
 	Session::load();
 }
+
+Auth::extend('phpBB', function()
+{
+    return new Login;
+});

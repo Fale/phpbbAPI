@@ -56,5 +56,18 @@ class Users {
                 )
             );
     }
+
+    public static function login($user, $pass)
+    {
+        $datas = User::query()->where('username','=',$user)->get(array('user_id','user_password'));
+        $d = $datas[0]->to_array();
+        $userID = $d['user_id'];
+        $passHash = $d['user_password'];
+        if (Login::phpbb_check_hash($pass, $passHash))
+               return "GOOD";
+        else
+               return "BAD";
+        return "user:$user, pass:$pass, userID: $userID, hash: $passHash";
+    }
 }
 ?>
