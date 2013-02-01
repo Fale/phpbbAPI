@@ -3,7 +3,7 @@ class V1_Account_Controller extends Base_Controller
 {
     public $restful = true;
 
-    public function get_index()
+    public function get_index($data = NULL)
     {
         return "Your profile";
     }
