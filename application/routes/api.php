@@ -2,7 +2,7 @@
 // HOME
 Route::get('/', function()
         {
-            return View::make('home.index');
+            return View::make('api.index');
             });
 
 // API V0
