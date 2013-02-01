@@ -14,8 +14,8 @@ class V1_Account_Controller extends Base_Controller
         $pass = Input::get('pass');
         $array = Array('username' => $user, 'password' => $pass);
         if (Auth::attempt($array))
-            return "You're logged in!";
+            return Response::json( array( 'success' => array( 'message' => 'Authentication Successful', 'code' => '230')), '230');
         else
-            return "Auth error!";
+            return Response::json( array( 'error' => array( 'message' => 'Access denied', 'code' => '531')), '531');
     }
 }
