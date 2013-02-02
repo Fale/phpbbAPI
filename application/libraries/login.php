@@ -5,7 +5,7 @@ class Login extends Laravel\Auth\Drivers\Driver {
     {
         if (filter_var($id, FILTER_VALIDATE_INT) !== false)
         {
-            return $this->model()->find($id);
+            return $id;
         } 
     }
 
