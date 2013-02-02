@@ -22,6 +22,9 @@ class V1_Account_Controller extends Base_Controller
                 );
         else
             switch($data) {
+                case "id":
+                    $response = Auth::user();
+                    break;
                 case "username":
                     $response = User::find(Auth::user())->username;
                     break;
