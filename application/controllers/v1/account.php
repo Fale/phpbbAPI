@@ -12,6 +12,9 @@ class V1_Account_Controller extends Base_Controller
                 case "username":
                     $response = User::find(Auth::user())->username;
                     break;
+                case "regdate":
+                    $response = User::find(Auth::user())->user_regdate;
+                    break;
             }
         if ($response)
             return Response::json(array('success' => array($data => $response)), '200');
