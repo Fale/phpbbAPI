@@ -5,7 +5,14 @@ class V1_Account_Controller extends Base_Controller
 
     public function get_index($data = NULL)
     {
-        return "Your profile";
+        if (is_null($data))
+            return "Your profile";
+        else
+            switch($data) {
+                case "username":
+                    $response = User::find(Auth::user())->username;
+                    break;
+            }
     }
 
     public function post_login()
