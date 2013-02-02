@@ -26,16 +26,12 @@ class Rsss extends SimpleXMLElement{
 
     private function fetchPoster($poster_id)
     {
-        $datas = User::query()->where('user_id','=',$poster_id)->get(array('username'));
-        $d = $datas[0]->to_array();
-        return $d['username'];
+        return User::find($poster_id)->username;
     }
 
     private function getPostOrd($postId)
     {
-        $topics = Post::query()->where('post_id','=',$postId)->get(array('topic_id'));
-        $t = $topics[0]->to_array();
-        $topicId = $t['topic_id'];
+        $topicId = Post::find($postId)->topic_id;
         $posts = Post::query()
             ->where('topic_id','=', $topicId)
             ->where('post_approved','=','1')
