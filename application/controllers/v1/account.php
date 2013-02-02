@@ -13,6 +13,10 @@ class V1_Account_Controller extends Base_Controller
                     $response = User::find(Auth::user())->username;
                     break;
             }
+        if ($response)
+            return Response::json(array('success' => array($data => $response)), '200');
+        else
+            return Response::json(array('error' => array('message' => 'The requested resource could not be found', 'code' => '404')), '404');
     }
 
     public function post_login()
