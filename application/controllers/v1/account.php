@@ -6,7 +6,20 @@ class V1_Account_Controller extends Base_Controller
     public function get_index($data = NULL)
     {
         if (is_null($data))
-            return "Your profile";
+            return User::query()
+                ->where('user_id','=',$userId)
+                ->get(
+                    array(
+                        'user_id as id',
+                        'user_regdate as regdate',
+                        'username as username',
+                        'user_email as email',
+                        'user_birthday as birthday',
+                        'user_posts as posts',
+                        'user_lastvisit as last_visit',
+                        'user_lastpost_time as last_post'
+                    )
+                );
         else
             switch($data) {
                 case "username":
