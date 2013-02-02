@@ -1,3 +1,5 @@
 <?php
-class Topic extends Eloquent {}
+class Topic extends Eloquent {
+    public static $key = 'topic_id';
+}
 ?>
