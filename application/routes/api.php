@@ -1,16 +1,4 @@
 <?php
-// HOME
-Route::get('/', function()
-        {
-            return View::make('api.index');
-            });
-
-// API V0
-Route::get('v0', function()
-        {
-            return View::make('v0.index');
-            });
-
 Route::any('v0/forum/(:num?)', array('uses' => 'v0.forum@index'));
 Route::any('v0/user/(:num?)', array('uses' => 'v0.user@index'));
 Route::any('v0/topic/(:num)', array('uses' => 'v0.topic@index'));
