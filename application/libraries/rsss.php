@@ -24,29 +24,9 @@ class Rsss extends SimpleXMLElement{
         $item->addChild('pubDate', date(DATE_RSS, $val['time'])); 
     }
 
-    private function getPostOrd($postId)
-    {
-        $topicId = Post::find($postId)->topic_id;
-        $posts = Post::query()
-            ->where('topic_id','=', $topicId)
-            ->where('post_approved','=','1')
-            ->order_by('post_time')
-            ->get(
-                array('post_id')
-            );
-        $a = 0;
-        foreach( $posts as $post)
-        {
-            $ps[$a] = $post->to_array();
-            $a = $a + 1;
-            if( $ps[$a-1]['post_id'] == $postId )
-                return $a;
-        }
-    }
-
     private function generateUrl($val)
     {
-        $p = $this->getPostOrd($val['id']);
+        $p = Post::cardinality($val['id']);
         $pager = floor($p/10);
         if($pager == 0)
             return 'http://forum.viglug.org/viewtopic.php?f=' . $val['forum_id'] . '&amp;t=' . $val['topic_id'] . '#p' . $val['id'];
