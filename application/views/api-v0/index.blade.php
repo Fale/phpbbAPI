@@ -1,5 +1,5 @@
 @include('dev.header')
-@include('dev.api-v0-nav')
+@include('api-v0.navigation')
         <div class="span9">
           <div class="hero-unit">
             <h1>Hello, developer!</h1>
