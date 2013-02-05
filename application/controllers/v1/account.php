@@ -37,6 +37,15 @@ class V1_Account_Controller extends Base_Controller
                 case "birthday":
                     $response = User::find(Auth::user())->user_birthday;
                     break;
+                case "posts":
+                    $response = User::find(Auth::user())->user_posts;
+                    break;
+                case "last_visit":
+                    $response = User::find(Auth::user())->user_lastvisit;
+                    break;
+                case "last_post":
+                    $response = User::find(Auth::user())->user_lastpost_time;
+                    break;
             }
         if ($response)
             return Response::json(array('success' => array($data => $response)), '200');
