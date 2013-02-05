@@ -42,10 +42,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">PHPbb Developers' Corner</a>
+          <a class="brand" href="/">PHPbb Developers' Corner</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="/">Home</a></li>
               <li><a href="/api">API</a></li>
               <li><a href="/rss">RSS</a></li>
               <li><a href="/about">About</a></li>
