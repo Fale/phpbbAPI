@@ -5,11 +5,16 @@ Route::any('v0/topic/(:num)', array('uses' => 'v0.topic@index'));
 Route::any('v0/stats/(:any?)', array('uses' => 'v0.stat@index'));
 
 Route::post('v1/account/login', array('uses' => 'v1.account@login'));
-Route::any('v1/account/(:any?)', array('before' => 'auth', 'uses' => 'v1.account@index'));
+Route::any('v1/account/(:num?)', array('before' => 'auth', 'uses' => 'v1.account@index'));
+//Route::any('v1/account/(:num?)', array('uses' => 'v1.account@index'));
 
 Route::filter('auth', function()
 {
-    if (Auth::guest())
+    $creds = array(
+        'username' => Request::getUser(),
+        'password' => Request::getPassword(),
+    );
+    if (!Auth::attempt($creds))
         return Response::json( array( 'error' => array( 'message' => 'Unauthorized', 'code' => '401')), '401');
 });
 

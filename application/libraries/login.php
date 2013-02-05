@@ -12,6 +12,8 @@ class Login extends Laravel\Auth\Drivers\Driver {
     public function attempt($a = array())
     {
         $datas = User::query()->where('username','=',$a['username'])->get(array('user_id','user_password'));
+        if (!isSet($datas[0]))
+            return FALSE;
         $d = $datas[0]->to_array();
         $userID = $d['user_id'];
         $passHash = $d['user_password'];
