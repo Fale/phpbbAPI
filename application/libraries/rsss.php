@@ -18,20 +18,10 @@ class Rsss extends SimpleXMLElement{
     {
         $item = $this->channel->addChild('item'); 
         $item->addChild('title', htmlentities($val['subject'])); 
-        $item->addChild('link', $this->generateUrl($val));
+        $item->addChild('link', Post::url($val['id']));
         $item->addChild('author', User::find($val['poster_id'])->username);
         $item->addChild('description', BBCode::toHTML($val['text'])); 
         $item->addChild('pubDate', date(DATE_RSS, $val['time'])); 
-    }
-
-    private function generateUrl($val)
-    {
-        $p = Post::cardinality($val['id']);
-        $pager = floor($p/10);
-        if($pager == 0)
-            return 'http://forum.viglug.org/viewtopic.php?f=' . $val['forum_id'] . '&amp;t=' . $val['topic_id'] . '#p' . $val['id'];
-        else
-            return 'http://forum.viglug.org/viewtopic.php?f=' . $val['forum_id'] . '&amp;t=' . $val['topic_id'] . '&amp;start=' . $pager*10 . '#p' . $val['id'];
     }
 }
 ?>
