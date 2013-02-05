@@ -11,18 +11,17 @@ class V1_Account_Controller extends Base_Controller
         if (!empty($datas))
             $datas = explode(",", $datas);
         if (!is_array($datas))
-            return Response::eloquent( User::find($id)->get(
-                    array(
-                        'user_id as id',
-                        'user_regdate as regdate',
-                        'username as username',
-                        'user_email as email',
-                        'user_birthday as birthday',
-                        'user_posts as posts',
-                        'user_lastvisit as last_visit',
-                        'user_lastpost_time as last_post'
-                    )
-            ));
+        {
+            $data = User::find($id)->to_array();
+            $response['id'] = $data['user_id'];
+            $response['regdate'] = $data['user_regdate'];
+            $response['username'] = $data['username'];
+            $response['email'] = $data['user_email'];
+            $response['birthday'] = $data['user_birthday'];
+            $response['posts'] = $data['user_posts'];
+            $response['last_visit'] = $data['user_lastvisit'];
+            $response['last_post'] = $data['user_lastpost_time'];
+        }
         else
         {
             foreach ($datas as $data)
