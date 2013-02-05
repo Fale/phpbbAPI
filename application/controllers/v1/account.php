@@ -3,12 +3,15 @@ class V1_Account_Controller extends Base_Controller
 {
     public $restful = true;
 
-    public function get_index($data = NULL)
+    public function get_index($id = NULL)
     {
-        if (is_null($data))
-            return User::query()
-                ->where('user_id','=',$userId)
-                ->get(
+        if ($id == NULL)
+            $id = Auth::user();
+        $datas = Input::get('fields');
+        if (!empty($datas))
+            $datas = explode(",", $datas);
+        if (!is_array($datas))
+            return Response::eloquent( User::find($id)->get(
                     array(
                         'user_id as id',
                         'user_regdate as regdate',
@@ -19,36 +22,41 @@ class V1_Account_Controller extends Base_Controller
                         'user_lastvisit as last_visit',
                         'user_lastpost_time as last_post'
                     )
-                );
+            ));
         else
-            switch($data) {
-                case "id":
-                    $response = Auth::user();
-                    break;
-                case "username":
-                    $response = User::find(Auth::user())->username;
-                    break;
-                case "regdate":
-                    $response = User::find(Auth::user())->user_regdate;
-                    break;
-                case "email":
-                    $response = User::find(Auth::user())->user_email;
-                    break;
-                case "birthday":
-                    $response = User::find(Auth::user())->user_birthday;
-                    break;
-                case "posts":
-                    $response = User::find(Auth::user())->user_posts;
-                    break;
-                case "last_visit":
-                    $response = User::find(Auth::user())->user_lastvisit;
-                    break;
-                case "last_post":
-                    $response = User::find(Auth::user())->user_lastpost_time;
-                    break;
+        {
+            foreach ($datas as $data)
+            {
+                switch ($data) {
+                    case "id":
+                        $response[$data] = $id;
+                        break;
+                    case "username":
+                        $response[$data] = User::find($id)->username;
+                        break;
+                    case "regdate":
+                        $response[$data] = User::find($id)->user_regdate;
+                        break;
+                    case "email":
+                        $response[$data] = User::find($id)->user_email;
+                        break;
+                    case "birthday":
+                        $response[$data] = User::find($id)->user_birthday;
+                        break;
+                    case "posts":
+                        $response[$data] = User::find($id)->user_posts;
+                        break;
+                    case "last_visit":
+                        $response[$data] = User::find($id)->user_lastvisit;
+                        break;
+                    case "last_post":
+                        $response[$data] = User::find($id)->user_lastpost_time;
+                        break;
+                }
             }
-        if ($response)
-            return Response::json(array('success' => array($data => $response)), '200');
+        }
+        if (isSet($response))
+            return Response::json($response, '200');
         else
             return Response::json(array('error' => array('message' => 'The requested resource could not be found', 'code' => '404')), '404');
     }
@@ -59,7 +67,7 @@ class V1_Account_Controller extends Base_Controller
         $pass = Input::get('pass');
         $array = Array('username' => $user, 'password' => $pass);
         if (Auth::attempt($array))
-            return Response::json( array( 'success' => array( 'message' => 'Authentication Successful', 'code' => '230')), '200');
+            return Response::json( array( 'message' => 'Authentication Successful', 'code' => '230'), '200');
         else
             return Response::json( array( 'error' => array( 'message' => 'Access denied', 'code' => '531')), '500');
     }
