@@ -23,9 +23,7 @@ class V1_Account_Controller extends Base_Controller
             $response = $parsed;
         else
             foreach ($datas as $data)
-            {
                 $response[$data] = $parsed[$data];
-            }
         if (isSet($response))
             return Response::json($response, '200');
         else
