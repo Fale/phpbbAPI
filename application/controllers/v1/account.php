@@ -10,50 +10,22 @@ class V1_Account_Controller extends Base_Controller
         $datas = Input::get('fields');
         if (!empty($datas))
             $datas = explode(",", $datas);
+        $db = User::find($id)->to_array();
+        $parsed['id'] = $db['user_id'];
+        $parsed['regdate'] = $db['user_regdate'];
+        $parsed['username'] = $db['username'];
+        $parsed['email'] = $db['user_email'];
+        $parsed['birthday'] = $db['user_birthday'];
+        $parsed['posts'] = $db['user_posts'];
+        $parsed['last_visit'] = $db['user_lastvisit'];
+        $parsed['last_post'] = $db['user_lastpost_time'];
         if (!is_array($datas))
-        {
-            $data = User::find($id)->to_array();
-            $response['id'] = $data['user_id'];
-            $response['regdate'] = $data['user_regdate'];
-            $response['username'] = $data['username'];
-            $response['email'] = $data['user_email'];
-            $response['birthday'] = $data['user_birthday'];
-            $response['posts'] = $data['user_posts'];
-            $response['last_visit'] = $data['user_lastvisit'];
-            $response['last_post'] = $data['user_lastpost_time'];
-        }
+            $response = $parsed;
         else
-        {
             foreach ($datas as $data)
             {
-                switch ($data) {
-                    case "id":
-                        $response[$data] = $id;
-                        break;
-                    case "username":
-                        $response[$data] = User::find($id)->username;
-                        break;
-                    case "regdate":
-                        $response[$data] = User::find($id)->user_regdate;
-                        break;
-                    case "email":
-                        $response[$data] = User::find($id)->user_email;
-                        break;
-                    case "birthday":
-                        $response[$data] = User::find($id)->user_birthday;
-                        break;
-                    case "posts":
-                        $response[$data] = User::find($id)->user_posts;
-                        break;
-                    case "last_visit":
-                        $response[$data] = User::find($id)->user_lastvisit;
-                        break;
-                    case "last_post":
-                        $response[$data] = User::find($id)->user_lastpost_time;
-                        break;
-                }
+                $response[$data] = $parsed[$data];
             }
-        }
         if (isSet($response))
             return Response::json($response, '200');
         else
