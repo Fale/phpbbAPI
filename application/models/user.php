@@ -16,7 +16,7 @@ class User extends Eloquent {
             'user_birthday as birthday'
     );
 
-    public static function mask()
+    public static function mask($filters = NULL)
     {
         if (Auth::check())
             return array_merge (User::$public, User::$private);
