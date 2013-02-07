@@ -2,7 +2,7 @@
 class User extends Eloquent {
     public static $key = 'user_id';
 
-    public static $public = Array(
+    private static $public = Array(
             'id' => 1, 
             'regdate' => 1, 
             'username' => 1, 
@@ -11,13 +11,20 @@ class User extends Eloquent {
             'last_post' => 1
     );
 
-    public static $private = Array(
+    private static $private = Array(
             'email' => 1, 
             'birthday' => 1 
     );
-    
-    public static function filter($in, $filter)
+
+    public static function mask()
     {
+        return User::$public;
+    }
+    
+    public static function filter($in, $filter = NULL)
+    {
+        if ($filter == NULL)
+            $filter = User::mask();
         $out = Array();
         if (isSet($in['user_id']) && isSet($filter['id']))
             $out['id'] = $in['user_id'];
