@@ -1,9 +1,11 @@
 <?php
+/* v0 */
 Route::any('v0/forum/(:num?)', array('uses' => 'v0.forum@index'));
 Route::any('v0/user/(:num?)', array('uses' => 'v0.user@index'));
 Route::any('v0/topic/(:num)', array('uses' => 'v0.topic@index'));
 Route::any('v0/stats/(:any?)', array('uses' => 'v0.stat@index'));
 
+/* v1 */
 Route::any('v1/account', array('before' => 'auth', 'uses' => 'v1.user@user'));
 Route::post('v1/account/login', array('uses' => 'v1.user@login'));
 
