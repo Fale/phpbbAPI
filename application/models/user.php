@@ -18,7 +18,10 @@ class User extends Eloquent {
 
     public static function mask()
     {
-        return User::$public;
+        if (Auth::check())
+            return array_merge (User::$public, User::$private);
+        else
+            return User::$public;
     }
     
     public static function filter($in, $filter = NULL)
