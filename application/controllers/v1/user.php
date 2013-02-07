@@ -5,9 +5,7 @@ class V1_User_Controller extends Base_Controller
 
     public function get_index()
     {
-        foreach (User::all() as $k => $d)
-            $out[$k] = $d->to_array();
-        return Response::json(User::filter($out));
+        return Response::eloquent(User::get(User::mask()));
     }
 
     public function get_user($id = NULL)
