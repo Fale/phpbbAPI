@@ -5,7 +5,9 @@ class V1_User_Controller extends Base_Controller
 
     public function get_index()
     {
-         return Response::eloquent(Users::get(""));
+        foreach (User::all() as $k => $d)
+            $out[$k] = $d->to_array();
+        return Response::json(User::filter($out));
     }
 
     public function get_user($id = NULL)
@@ -15,20 +17,10 @@ class V1_User_Controller extends Base_Controller
         $datas = Input::get('fields');
         if (!empty($datas))
             $datas = explode(",", $datas);
-        $db = User::find($id)->to_array();
-        $parsed['id'] = $db['user_id'];
-        $parsed['regdate'] = $db['user_regdate'];
-        $parsed['username'] = $db['username'];
-        $parsed['email'] = $db['user_email'];
-        $parsed['birthday'] = $db['user_birthday'];
-        $parsed['posts'] = $db['user_posts'];
-        $parsed['last_visit'] = $db['user_lastvisit'];
-        $parsed['last_post'] = $db['user_lastpost_time'];
         if (!is_array($datas))
-            $response = $parsed;
+            $response = User::filter(User::find($id)->to_array());
         else
-            foreach ($datas as $data)
-                $response[$data] = $parsed[$data];
+            $response = User::filter(User::find($id)->to_array(), array_fill_keys($datas, 1));
         if (isSet($response))
             return Response::json($response, '200');
         else
