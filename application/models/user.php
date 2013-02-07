@@ -5,7 +5,7 @@ class User extends Eloquent {
     private static $public = Array(
             'user_id as id',
             'user_regdate as regdate',
-            'username',
+            'username as username',
             'user_posts as posts',
             'user_lastvisit as last_visit',
             'user_lastpost_time as last_post_time'
@@ -19,9 +19,22 @@ class User extends Eloquent {
     public static function mask($filters = NULL)
     {
         if (Auth::check())
-            return array_merge (User::$public, User::$private);
+            $out = array_merge (User::$public, User::$private);
         else
-            return User::$public;
+            $out = User::$public;
+        if ($filters)
+        {
+            $clean = Array();
+            foreach ($out as $o)
+            {
+                $check = explode (" ", $o);
+                foreach ($filters as $k => $filter)
+                    if ($check[2] == $k)
+                        $clean[] = $o;
+            }
+            $out = $clean;
+        }
+        return $out;
     }
 }
 ?>

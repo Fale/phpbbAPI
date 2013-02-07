@@ -14,10 +14,9 @@ class V1_User_Controller extends Base_Controller
             $id = Auth::user();
         if ($data = Input::get('fields'))
             $data = array_fill_keys(explode(",", $data), 1);
-        if ($response = User::find($id))
-            $response = User::filter($response->to_array(), $data);
+        $response = User::find($id, User::mask($data));
         if (isSet($response))
-            return Response::json($response, '200');
+            return Response::eloquent($response, '200');
         else
             return Response::json(array('error' => array('message' => 'The requested resource could not be found', 'code' => '404')), '404');
     }
