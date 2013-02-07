@@ -1,9 +1,9 @@
 <?php
-class V1_Account_Controller extends Base_Controller
+class V1_User_Controller extends Base_Controller
 {
     public $restful = true;
 
-    public function get_index($id = NULL)
+    public function get_user($id = NULL)
     {
         if ($id == NULL)
             $id = Auth::user();
