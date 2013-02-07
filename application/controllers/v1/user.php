@@ -16,7 +16,8 @@ class V1_User_Controller extends Base_Controller
             $id = Auth::user();
         if ($data = Input::get('fields'))
             $data = array_fill_keys(explode(",", $data), 1);
-        $response = User::filter(User::find($id)->to_array(), $data);
+        if ($response = User::find($id))
+            $response = User::filter($response->to_array(), $data);
         if (isSet($response))
             return Response::json($response, '200');
         else
