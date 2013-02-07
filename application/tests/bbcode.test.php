@@ -46,7 +46,7 @@ class TestBBCode extends PHPUnit_Framework_TestCase {
 	 * Test that a closing PHPbb quote works properly
 	 * @return void
 	 */
-	public function testComplexPHPbbQuote()
+	public function testClosePHPbbQuote()
 	{
         $cleaned = BBCode::toStdBBCode("[/quote:35s4h6he]");
 		$this->assertEquals("[/quote]", $cleaned);	
