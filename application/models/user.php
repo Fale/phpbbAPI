@@ -25,6 +25,12 @@ class User extends Eloquent {
     {
         if ($filter == NULL)
             $filter = User::mask();
+        if (isSet($in[0]))
+        {
+            foreach ($in as $k => $i)
+                $out[$k] = User::filter($i, $filter);
+            return $out;
+        }
         $out = Array();
         if (isSet($in['user_id']) && isSet($filter['id']))
             $out['id'] = $in['user_id'];
