@@ -5,7 +5,12 @@ class RSS_Forum_Controller extends Base_Controller
 
     public function get_index($forumId = NULL, $limit = 10)
     {
-        $datas = Forums::getPosts($forumId, $limit);
+        $datas = Post::query()
+            ->where('forum_id','=', $forumId)
+            ->where('post_approved','=','1')
+            ->order_by('post_time', 'desc')
+            ->take($limit)
+            ->get(Post::mask());
         $a = 0;
         if (!$datas)
             return Response::error('404');
