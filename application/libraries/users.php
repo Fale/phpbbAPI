@@ -1,40 +1,5 @@
 <?php
 class Users {
-    public static function get($userId = NULL)
-    {
-        if($userId)
-        {
-            return User::query()
-                ->where('user_id','=',$userId)
-                ->get(
-                    array(
-                        'user_id as id',
-                        'user_regdate as regdate',
-                        'username as name',
-                        'user_posts as posts',
-                        'user_lastvisit as last_visit',
-                        'user_lastpost_time as last_post'
-                    )
-                );
-        }
-        else
-        {
-            return User::query()
-                ->where('user_password','!=','')
-                ->order_by('user_id')
-                ->get(
-                    array(
-                        'user_id as id',
-                        'user_regdate as regdate',
-                        'username as name',
-                        'user_posts as posts',
-                        'user_lastvisit as last_visit',
-                        'user_lastpost_time as last_post'
-                    )
-                );
-        }
-    }
-    
     public static function getPosts($userId, $limit = 10)
     {
         return Post::query()
