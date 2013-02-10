@@ -5,7 +5,12 @@ class RSS_Topic_Controller extends Base_Controller
 
     public function get_index($topicId = NULL, $limit = 10)
     {
-        $datas = Topics::get($topicId, $limit);
+        $datas = Post::query()
+            ->where('topic_id','=', $topicId)
+            ->where('post_approved','=','1')
+            ->order_by('post_time', 'desc')
+            ->take($limit)
+            ->get(Post::mask());
         $a = 0;
         if (!$datas)
             return Response::error('404');

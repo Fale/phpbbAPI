@@ -5,7 +5,11 @@ class RSS_Index_Controller extends Base_Controller
 
     public function get_index( $limit = 10)
     {
-        $datas = Forums::getPosts(NULL, $limit);
+        $datas = Post::query()
+            ->where('post_approved','=','1')
+            ->order_by('post_time', 'desc')
+            ->take($limit)
+            ->get(Post::mask());
         $a = 0;
         foreach( $datas as $data)
         {

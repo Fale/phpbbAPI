@@ -5,7 +5,12 @@ class RSS_User_Controller extends Base_Controller
 
     public function get_index($userId = NULL, $limit = 10)
     {
-        $datas = Users::getPosts($userId, $limit);
+        $datas = Post::query()
+            ->where('poster_id','=', $userId)
+            ->where('post_approved','=','1')
+            ->order_by('post_time', 'desc')
+            ->take($limit)
+            ->get(Post::mask());
         $a = 0;
         if (!$datas)
             return Response::error('404');

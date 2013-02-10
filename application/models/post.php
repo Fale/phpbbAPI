@@ -2,6 +2,25 @@
 class Post extends Eloquent {
     public static $key = 'post_id';
 
+    private static $public = Array(
+        'post_id as id',
+        'post_attachment as attachment',
+        'post_subject as subject',
+        'post_text as text',
+        'post_checksum as checksum',
+        'topic_id as topic_id',
+        'forum_id as forum_id',
+        'poster_id as poster_id',
+        'post_time as time'
+    );
+
+    private static $private = Array();
+
+    public static function mask()
+    {
+        return Post::$public;
+    }
+
     public static function cardinality($postId)
     {
         $topicId = Post::find($postId)->topic_id;
