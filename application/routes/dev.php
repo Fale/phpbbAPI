@@ -4,6 +4,11 @@ Route::get('/', function() {
     return View::make('dev.index');
 });
 
+// RSS
+Route::get('rss', function() {
+    return View::make('rss.index');
+});
+
 // API
 Route::get('api', function() {
     return View::make('dev.api');

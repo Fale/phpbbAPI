@@ -45,11 +45,11 @@
           <a class="brand" href="/">PHPbb Developers' Corner</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="/api">API</a></li>
-              <li><a href="/rss">RSS</a></li>
-              <li><a href="/about">About</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li class="{{ URI::is( '/') ? 'active' : '' }}"><a href="/">Home</a></li>
+              <li class="{{ URI::segment( 1 ) == 'api' ? 'active' : '' }}"><a href="/api">API</a></li>
+              <li class="{{ URI::segment( 1 ) == 'rss' ? 'active' : '' }}"><a href="/rss">RSS</a></li>
+              <li class="{{ URI::is( 'about') ? 'active' : '' }}"><a href="/about">About</a></li>
+              <li class="{{ URI::is( 'contact') ? 'active' : '' }}"><a href="/contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
