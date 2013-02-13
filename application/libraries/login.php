@@ -23,6 +23,83 @@ class Login extends Laravel\Auth\Drivers\Driver {
             return FALSE;
     }
 
+    public function register($data)
+    {
+        User::create(array(
+            'user_id' => '', // AUTOINCREMENT
+            'user_type' => $data['user_type'],
+            'group_id' => $data['user_type'],
+            'user_permissions' => '',
+            'user_perm_from' => 0, // 0
+            'user_ip' => Request::id(),
+            'user_regdate' => ,
+            'username' => ,
+            'username_clean' => ,
+            'user_password' => ,
+            'user_passchg' => ,
+            'user_pass_convert' => 0, // 0
+            'user_email' => ,
+            'user_email_hash' => ,
+            'user_birthday' => ,
+            'user_lastvisit' => 0, // 0
+            'user_lastmark' => ,
+            'user_lastpost_time' => 0, // 0
+            'user_lastpage' => '',
+            'user_last_confirm_key' => '',
+            'user_last_search' => 0, // 0
+            'user_warnings' => 0, // 0
+            'user_login_attempts' => 0, // 0
+            'user_inactive_reason' => 0, // 0
+            'user_inactive_time' => 0, // 0
+            'user_posts' => 0, // 0
+            'user_lang' => $data['lang'],
+            'user_timezone' => $data['timezone'], // 0.00
+            'user_dst' => $data['dst'], // 0
+            'user_dateformat' => '', // d M Y H:i
+            'user_style' => '', // 0
+            'user_rank' => '', // 0
+            'user_colour' => '',
+            'user_new_privmsg' => '', // 0
+            'user_unread_privmsg' => '', // 0
+            'user_last_privmsg' => '', // 0
+            'user_message_rules' => '', // 0
+            'user_full_folder' => '', // -3
+            'user_emailtime' => '', // 0
+            'user_topic_show_days' => '', // 0
+            'user_topic_sortby_type' => '', // t
+            'user_topic_sortby_dir' => '', // d
+            'user_post_show_days' => '', // 0
+            'user_post_sortby_type' => '', // t
+            'user_post_sortby_dir' => '', // a
+            'user_notify' => '', // 0
+            'user_notify_pm' => '', // 1
+            'user_notify_type' => '', // 0
+            'user_allow_pm' => '', // 1
+            'user_allow_viewonline' => '', // 1
+            'user_allow_viewemail' => '', // 1
+            'user_allow_massemail' => '', // 1
+            'user_options' => '', // 230271
+            'user_avatar' => '',
+            'user_avatar_type' => '', // 0
+            'user_avatar_width' => '', // 0
+            'user_avatar_height' => '', // 0
+            'user_sig' => '',
+            'user_sig_bbcode_uid' => '',
+            'user_sig_bbcode_bitfield' => '',
+            'user_from' => '',
+            'user_icq' => '',
+            'user_aim' => '',
+            'user_yim' => '',
+            'user_msnm' => '',
+            'user_jabber' => '',
+            'user_website' => '',
+            'user_occ' => '',
+            'user_interests' => '',
+            'user_actkey' => '',
+            'user_newpasswd' => '',
+        ));
+    }
+
 /**
 * Check for correct password
 *
