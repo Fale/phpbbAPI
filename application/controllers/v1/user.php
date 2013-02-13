@@ -21,6 +21,18 @@ class V1_User_Controller extends Base_Controller
             return Response::json(array('error' => array('message' => 'The requested resource could not be found', 'code' => '404')), '404');
     }
 
+    public function post_user()
+    {
+        $data = Array();
+        $data['username'] = Input::get('user');
+        $data['password'] = Input::get('pass');
+        $data['email'] = Input::get('email');
+        if (Auth::register($data))
+            return Response::eloquent($response, '200');
+        else
+            return Response::json(array('error' => array('message' => 'The requested resource could not be found', 'code' => '404')), '404');
+    }
+
     public function post_login()
     {
         $user = Input::get('user');
