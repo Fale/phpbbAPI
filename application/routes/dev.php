@@ -9,6 +9,11 @@ Route::get('about', function() {
     return View::make('dev.about');
 });
 
+// CONTACT
+Route::get('contact', function() {
+    return View::make('dev.contact');
+});
+
 // RSS
 Route::get('rss', function() {
     return View::make('rss.index');
