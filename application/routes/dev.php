@@ -18,4 +18,9 @@ Route::get('api', function() {
 Route::get('api/v0', function() {
     return View::make('api-v0.index');
 });
+
+// API V1
+Route::get('api/v1', function() {
+    return View::make('api-v1.index');
+});
 ?>
